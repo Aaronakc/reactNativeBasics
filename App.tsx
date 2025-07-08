@@ -9,6 +9,7 @@ import { NewAppScreen } from '@react-native/new-app-screen';
 import { Image, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View } from 'react-native';
 import LoginScreen from './src/screens/LoginScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
+import TodoTaskScreen from './src/screens/TodoTaskScreen';
 
 
 function App() {
@@ -22,7 +23,9 @@ function App() {
  <View style={styles.container}>
 
    {/* <LoginScreen/> */}
-   <SignUpScreen/>
+    {/* <SignUpScreen/> */}
+    
+    <TodoTaskScreen/>
  </View>
  
     // <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>

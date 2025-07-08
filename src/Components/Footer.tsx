@@ -9,11 +9,12 @@ const Footer = () => {
   )
 }
 
-const styles=StyleSheet.create({
-  container:{
-    backgroundColor: "#EFBF04", height: 70,
-   
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#EFBF04", 
+    height: 80,
+
   }
-  
+
 })
 export default Footer

@@ -4,11 +4,11 @@ import { Image, StyleSheet, TextInput, View } from 'react-native'
 interface CustomInputProps {
   placeholder?: string;
   icon?: any;
-  onChangeText?:(value:string)=>void;
-  value:string
+  onChangeText?: (value: string) => void;
+  value?: string;
 }
 
-const CustomInput = ({ placeholder, icon,onChangeText,value }: CustomInputProps) => {
+const CustomInput = ({ placeholder, icon, onChangeText, value }: CustomInputProps) => {
   return (
     <View style={styles.container}>
       <Image source={icon} style={styles.icon} />
@@ -16,7 +16,7 @@ const CustomInput = ({ placeholder, icon,onChangeText,value }: CustomInputProps)
         placeholder={placeholder}
         placeholderTextColor="#888"
         style={styles.input}
-        onChangeText={(text)=>onChangeText?.(text)}
+        onChangeText={(text) => onChangeText?.(text)}
         value={value}
       />
     </View>

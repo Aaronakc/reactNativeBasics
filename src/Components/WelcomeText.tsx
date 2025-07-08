@@ -1,14 +1,38 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 
 const WelcomeText = () => {
   return (
     <View>
-      <Text style={{fontSize:40,fontWeight:"bold",paddingLeft:20,marginTop:25}}>Login</Text>
-      <Text style={{paddingLeft:20,fontSize:20,color:"gray"}}>Please enter your details</Text>
+      <Text style={styles.heading}>Welcome back</Text>
+      <Text style={styles.subHeading}>Please enter your details</Text>
 
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  heading: {
+    fontSize: 25,
+    fontWeight: "bold",
+    paddingLeft: 30,
+    marginTop: 25,
+    fontFamily: "serif"
+
+  },
+  subHeading: {
+    paddingLeft: 30,
+    fontSize: 18,
+    color: "gray",
+    fontFamily: "serif"
+
+  },
+  image: {
+    width: 40,
+    height: 10,
+
+
+  }
+})
 
 export default WelcomeText

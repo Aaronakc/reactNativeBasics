@@ -7,15 +7,15 @@ interface RememberUserProps {
 
 
 import React from 'react'
-import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 
 const RememberUser = ({ onPress, remember }: RememberUserProps) => {
 
   return (
 
-    <View style={{ marginLeft: 25, marginRight: 10, marginTop: 10, display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-      <View style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 3 }}>
+    <View style={styles.container}>
+      <View style={styles.subContainer}>
         <TouchableOpacity onPress={onPress}>
           <Image
             source={
@@ -23,18 +23,50 @@ const RememberUser = ({ onPress, remember }: RememberUserProps) => {
                 ? require("../../assets/checkedbox.png")
                 : require("../../assets/uncheckbox.png")
             }
-            style={{ width: 18, height: 18 }}
+            style={styles.imageContainer}
           />
         </TouchableOpacity>
-        <Text>Remember for 30 days</Text>
+        <Text style={styles.font}>Remember for 30 days</Text>
 
       </View>
 
-      <Text style={{ color: "#ffcc00", textDecorationLine: "underline" }}>Forgot password</Text>
+      <Text style={styles.TextDesignPw}>Forgot password</Text>
 
 
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginLeft: 30,
+    marginRight: 20,
+    marginTop: 20,
+    display: "flex",
+    flexDirection: "row", justifyContent: "space-between",
+
+  },
+  subContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 3,
+
+  },
+  imageContainer: {
+    width: 18,
+    height: 18,
+
+  },
+  TextDesignPw: {
+    color: "#ffcc00",
+    textDecorationLine: "underline",
+    fontFamily: "serif"
+
+  },
+  font: {
+    fontFamily: "serif"
+  }
+})
 
 export default RememberUser
