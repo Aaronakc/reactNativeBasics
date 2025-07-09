@@ -8,6 +8,7 @@ import RememberUser from '../Components/RememberUser'
 import GoogleSignin from '../Components/GoogleSignin'
 import Footer from '../Components/Footer'
 
+
 const LoginScreen = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -44,8 +45,12 @@ const LoginScreen = () => {
       <ButtonText onPress={handleDetail} label='Sign in' />
       <GoogleSignin />
       <View style={styles.textWrapper}>
-        <Text style={styles.textDesg}>Don't have an account?</Text>
+          <Text style={styles.textDesg}>Don't have an account?</Text>
+
+       
         <Text style={styles.textDecorate}>Sign Up</Text>
+       
+
       </View>
       <Footer />
 
