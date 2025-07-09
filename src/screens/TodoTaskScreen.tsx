@@ -7,7 +7,8 @@ import TodoItem from '../Components/TodoItem'
 const TodoTaskScreen = () => {
   const [input, setInput] = useState("")
   const [todos, setTodos] = useState<{ checked: boolean, task: string }[]>([])
-
+  // const [editingIndex,setEditingIndex]=useState<number | null>(null)
+  // const [editingText,setEditingText]=useState('')
 
   const handleInputText = (text: string) => {
     console.log("Changed called")
@@ -43,11 +44,11 @@ const TodoTaskScreen = () => {
 
 
   return (
-    <View style={{flex: 1}}>
+    <View>
       <View style={styles.background}>
         <Text style={styles.font}>Todo List</Text>
       </View>
-      <View>
+      <View style={{}}>
         <View style={styles.flexWrapper}>
           <CustomInput placeholder='enter the task' icon={require('../../assets/taskicon.png')} onChangeText={handleInputText} value={input} />
           <TouchableOpacity onPress={handleAddTask}>
