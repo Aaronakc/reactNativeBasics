@@ -7,12 +7,10 @@ import TodoItem from '../Components/TodoItem'
 const TodoTaskScreen = () => {
   const [input, setInput] = useState("")
   const [todos, setTodos] = useState<{ checked: boolean, task: string }[]>([])
-  // const [editingIndex,setEditingIndex]=useState<number | null>(null)
-  // const [editingText,setEditingText]=useState('')
+  const [editingIndex, setEditingIndex] = useState<number | null>(null)
+  const [editText, setEditText] = useState('')
 
   const handleInputText = (text: string) => {
-    console.log("Changed called")
-    console.log("the text from todo screen ", text)
     setInput(text)
   }
 
@@ -21,10 +19,10 @@ const TodoTaskScreen = () => {
       return
     }
 
-      setInput("")
-      setTodos([...todos, { checked: false, task: input }])
+    setInput("")
+    setTodos([...todos, { checked: false, task: input }])
 
-    
+
   }
   console.log(todos)
 
@@ -35,12 +33,27 @@ const TodoTaskScreen = () => {
 
   }
 
-  const handleDelete=(index:number)=>{
-  const remainingTodos=todos.filter((todo,i)=>i!==index)
-  setTodos(remainingTodos)
+  const handleDelete = (index: number) => {
+    const remainingTodos = todos.filter((todo, i) => i !== index)
+    setTodos(remainingTodos)
   }
 
+  const handleEdit = (index: number) => {
+    setEditingIndex(index)
+    setEditText(todos[index].task)
 
+  }
+  const handleSave = () => {
+    if (editingIndex == null) {
+      return
+    }
+    const updatedTodo = [...todos]
+    updatedTodo[editingIndex].task = editText
+    setEditingIndex(null)
+    setEditText("")
+    setTodos(updatedTodo)
+
+  }
 
 
   return (
@@ -58,7 +71,7 @@ const TodoTaskScreen = () => {
 
         <FlatList
           data={todos}
-          renderItem={({ item, index }) => <TodoItem task={item.task} checked={item.checked} index={index} onPress={handleToggle} onDelete={handleDelete} />}
+          renderItem={({ item, index }) => <TodoItem task={item.task} checked={item.checked} index={index} onPress={handleToggle} onDelete={handleDelete} onEdit={handleEdit} onSave={handleSave} editText={editText} setEditText={setEditText} isEditing={editingIndex === index} />}
           keyExtractor={(item, index) => index.toString()}
           style={styles.flatListStyle}
         />
@@ -71,13 +84,13 @@ const TodoTaskScreen = () => {
 
 const styles = StyleSheet.create({
 
-  container:{
+  container: {
     flex: 1,
   },
 
   background: {
-    // backgroundColor: "#009f8b",
-    backgroundColor: "#404040",
+    backgroundColor: "#009f8b",
+    // backgroundColor: "#404040",
     height: 90,
     display: "flex",
     justifyContent: "center",
@@ -101,11 +114,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 40,
+    paddingHorizontal: 20,
     paddingVertical: 10,
   },
-  flatListStyle:{
-    marginBottom:100,
+  flatListStyle: {
+    marginBottom: 100,
   },
 })
 

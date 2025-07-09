@@ -9,8 +9,7 @@ interface CustomInputProps {
 }
 
 const CustomInput = ({ placeholder, icon, onChangeText, value }: CustomInputProps) => {
-  console.log("input value is:",value)
-
+ 
   return (
     <View style={styles.container}>
       <Image source={icon} style={styles.icon} />
