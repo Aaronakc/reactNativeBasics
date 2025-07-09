@@ -66,12 +66,12 @@ const TodoItem = ({task,checked,index,onPress,onDelete,onEdit,onSave,editText,se
 
 const styles = StyleSheet.create({
   container: {
-    marginLeft: 35,
+    marginLeft: 28,
     elevation: 5,
     backgroundColor: "white",
     // backgroundColor:"#606060",
     marginRight: 20,
-    marginVertical: 10,
+    marginVertical: 14,
     paddingHorizontal: 20,
     paddingVertical: 20,
     borderRadius: 10,

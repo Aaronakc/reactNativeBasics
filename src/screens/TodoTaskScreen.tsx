@@ -106,7 +106,8 @@ const styles = StyleSheet.create({
   image: {
     width: 20,
     height: 20,
-    marginTop: 20,
+    marginTop: 18,
+    marginRight: 10,
 
   },
   flexWrapper: {
