@@ -6,9 +6,10 @@ interface CustomInputProps {
   icon?: any;
   onChangeText?: (value: string) => void;
   value?: string;
+  color?:string;
 }
 
-const CustomInput = ({ placeholder, icon, onChangeText, value }: CustomInputProps) => {
+const CustomInput = ({ placeholder, icon, onChangeText, value ,color}: CustomInputProps) => {
  
   return (
     <View style={styles.container}>
@@ -16,9 +17,10 @@ const CustomInput = ({ placeholder, icon, onChangeText, value }: CustomInputProp
       <TextInput
         placeholder={placeholder}
         placeholderTextColor="#888"
-        style={styles.input}
+        style={[styles.input,{color:color}]}
         onChangeText={(text) => onChangeText?.(text)}
         value={value}
+    
       />
     </View>
   )

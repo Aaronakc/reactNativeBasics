@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import CustomInput from '../Components/CustomInput'
 import TodoItem from '../Components/TodoItem'
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types/navigation';
 
+type Props = NativeStackScreenProps<RootStackParamList, 'TodoTask'>;
 
-const TodoTaskScreen = () => {
+const TodoTaskScreen = ({ navigation }: Props) => {
   const [input, setInput] = useState("")
   const [todos, setTodos] = useState<{ checked: boolean, task: string }[]>([])
   const [editingIndex, setEditingIndex] = useState<number | null>(null)
@@ -57,15 +60,26 @@ const TodoTaskScreen = () => {
 
 
   return (
-    <View>
+    <View style={styles.container}>
+      {/* header */}
       <View style={styles.background}>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+          <Image source={require('../../assets/backIcon.png')} style={styles.backIcon} />
+        </TouchableOpacity>
         <Text style={styles.font}>Todo List</Text>
+        <TouchableOpacity>
+          <Image source={require('../../assets/menu.png')} style={styles.backIcon} />
+        </TouchableOpacity>
       </View>
-      <View style={{}}>
+
+
+
+      {/* input and add task */}
+      <View style={{flex:1,backgroundColor:"#141414"}}>
         <View style={styles.flexWrapper}>
-          <CustomInput placeholder='enter the task' icon={require('../../assets/taskicon.png')} onChangeText={handleInputText} value={input} />
+          <CustomInput placeholder='enter the task' icon={require('../../assets/taskicon.png')} onChangeText={handleInputText} value={input} color="white" />
           <TouchableOpacity onPress={handleAddTask}>
-            <Image source={require('../../assets/plus.png')} style={styles.image} />
+            <Image source={require('../../assets/addIcon.png')} style={styles.image} />
           </TouchableOpacity>
         </View>
 
@@ -75,10 +89,11 @@ const TodoTaskScreen = () => {
           keyExtractor={(item, index) => index.toString()}
           style={styles.flatListStyle}
         />
-
-
       </View>
+
+
     </View>
+
   )
 }
 
@@ -93,7 +108,9 @@ const styles = StyleSheet.create({
     // backgroundColor: "#404040",
     height: 90,
     display: "flex",
-    justifyContent: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 15,
     alignItems: "center",
 
   },
@@ -104,8 +121,8 @@ const styles = StyleSheet.create({
     color: "white",
   },
   image: {
-    width: 20,
-    height: 20,
+    width: 25,
+    height: 25,
     marginTop: 18,
     marginRight: 10,
 
@@ -119,8 +136,13 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   flatListStyle: {
-    marginBottom: 100,
+    flex: 1,
+    marginBottom: 10,
   },
+  backIcon: {
+    width: 15,
+    height: 15,
+  }
 })
 
 export default TodoTaskScreen

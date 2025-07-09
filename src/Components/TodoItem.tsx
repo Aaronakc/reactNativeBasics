@@ -23,8 +23,8 @@ const TodoItem = ({task,checked,index,onPress,onDelete,onEdit,onSave,editText,se
             <Image
               source={
                 checked
-                  ? require('../../assets/checkedbox.png')
-                  : require('../../assets/uncheckbox.png')
+                  ? require('../../assets/checkIcon.png')
+                  : require('../../assets/uncheckIcon.png')
               }
               style={styles.image}
             />
@@ -45,14 +45,14 @@ const TodoItem = ({task,checked,index,onPress,onDelete,onEdit,onSave,editText,se
       <View style={styles.flexContainer}>
         {!isEditing && (
         <TouchableOpacity onPress={() => onDelete?.(index)}>
-          <Image source={require('../../assets/delete.png')} style={styles.deleteImage} />
+          <Image source={require('../../assets/deleteIcon.png')} style={styles.deleteImage} />
         </TouchableOpacity>
 
         )}
 
         {isEditing ? (
           <TouchableOpacity onPress={onSave}>
-            <Text style={{ fontSize: 16, color: 'blue', marginLeft: 10 }}>Save</Text>
+            <Text style={{ fontSize: 16, color: '#009f8b', marginLeft: 10 }}>Save</Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity onPress={() => onEdit?.(index)}>
@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
   container: {
     marginLeft: 28,
     elevation: 5,
-    backgroundColor: "white",
-    // backgroundColor:"#606060",
+    // backgroundColor: "white",
+    backgroundColor:"#3b3b3b",
     marginRight: 20,
     marginVertical: 14,
     paddingHorizontal: 20,
@@ -92,11 +92,11 @@ const styles = StyleSheet.create({
     flex: 1,
     flexShrink: 1,
     flexWrap: "wrap",
-    // color:"white"
+    color:"white"
   },
   image: {
-    height: 20,
-    width: 20,
+    height: 14,
+    width: 14,
     marginRight: 5,
   },
   lineThrough: {

@@ -7,9 +7,12 @@ import WelcomeText from '../Components/WelcomeText'
 import RememberUser from '../Components/RememberUser'
 import GoogleSignin from '../Components/GoogleSignin'
 import Footer from '../Components/Footer'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { RootStackParamList } from '../types/navigation'
 
+type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}:Props) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [detail, setDetail] = useState("")
@@ -32,6 +35,7 @@ const LoginScreen = () => {
   const handleDetail = () => {
     setDetail(`Email:${email} Password:${password}`)
     console.log("btn pressed")
+    navigation.navigate('TodoTask')
   }
   console.log(detail)
 
@@ -45,11 +49,12 @@ const LoginScreen = () => {
       <ButtonText onPress={handleDetail} label='Sign in' />
       <GoogleSignin />
       <View style={styles.textWrapper}>
-          <Text style={styles.textDesg}>Don't have an account?</Text>
+        <Text style={styles.textDesg}>Don't have an account?</Text>
 
-       
-        <Text style={styles.textDecorate}>Sign Up</Text>
-       
+        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+          <Text style={styles.textDecorate}>Sign Up</Text>
+        </TouchableOpacity>
+
 
       </View>
       <Footer />

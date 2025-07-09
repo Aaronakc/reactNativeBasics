@@ -1,21 +1,24 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import RootStack from './src/navigation/RootStack';
 
-import LoginScreen from './src/screens/LoginScreen';
-import SignUpScreen from './src/screens/SignUpScreen';
-import TodoTaskScreen from './src/screens/TodoTaskScreen';
-import { View } from 'react-native';
+type RootStackParamList = {
+  Login: undefined;
+  SignUp: undefined;
+  TodoTask: undefined;
+};
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
-    <View>
-      {/* <LoginScreen/> */}
-      {/* <SignUpScreen/> */}
-      <TodoTaskScreen/>
 
-    </View>
+    <NavigationContainer>
+      <RootStack />
+    </NavigationContainer>
+
+
+
   );
 }

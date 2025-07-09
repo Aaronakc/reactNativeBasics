@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
-import { ImageBackground, StyleSheet, Text, View } from 'react-native'
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import CustomInput from '../Components/CustomInput'
 import ButtonText from '../Components/ButtonText'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { RootStackParamList } from '../types/navigation'
 
 
+type Props=NativeStackScreenProps<RootStackParamList,'SignUp'>
 
-
-const SignUpScreen = () => {
+const SignUpScreen = ({navigation}:Props) => {
    const [email,setEmail]=useState("")
    const  [password,setPassword]=useState("")
    const [confirmPw,setConfirmPw]=useState("")
@@ -41,7 +43,9 @@ const SignUpScreen = () => {
         <View style={styles.login}>
           <Text  >Already have account?
           </Text>
+          <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
           <Text style={styles.textDecorate}>Login</Text>
+          </TouchableOpacity>
         </View>
 
 
