@@ -35,7 +35,7 @@ const TodoItem = ({task,checked,index,onPress,onDelete,onEdit,onSave,editText,se
           <TextInput
             value={editText}
             onChangeText={(text)=>setEditText?.(text)}
-            style={[styles.font, { borderBottomWidth: 1, borderColor: '#ccc', paddingVertical: 2 }]}
+            style={[styles.font, { borderBottomWidth: 1, borderColor: 'white', paddingVertical: 2 }]}
           />
         ) : (
           <Text style={[styles.font, checked && styles.lineThrough]}>{task}</Text>
@@ -90,14 +90,12 @@ const styles = StyleSheet.create({
     fontFamily: "serif",
     display:"flex",
     flex: 1,
-    flexShrink: 1,
-    flexWrap: "wrap",
     color:"white"
   },
   image: {
     height: 14,
     width: 14,
-    marginRight: 5,
+    marginRight: 10,
   },
   lineThrough: {
     textDecorationLine: 'line-through',

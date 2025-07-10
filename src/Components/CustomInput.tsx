@@ -6,21 +6,21 @@ interface CustomInputProps {
   icon?: any;
   onChangeText?: (value: string) => void;
   value?: string;
-  color?:string;
+  color?: string;
 }
 
-const CustomInput = ({ placeholder, icon, onChangeText, value ,color}: CustomInputProps) => {
- 
+const CustomInput = ({ placeholder, icon, onChangeText, value, color }: CustomInputProps) => {
+
   return (
     <View style={styles.container}>
       <Image source={icon} style={styles.icon} />
       <TextInput
         placeholder={placeholder}
         placeholderTextColor="#888"
-        style={[styles.input,{color:color}]}
+        style={[styles.input, { color: color }]}
         onChangeText={(text) => onChangeText?.(text)}
         value={value}
-    
+
       />
     </View>
   )
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 25,
     marginTop: 20,
     paddingBottom: 5,
+    marginBottom: 10,
   },
   icon: {
     width: 24,

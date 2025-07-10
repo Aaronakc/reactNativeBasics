@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, {useState } from 'react'
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import CustomInput from '../Components/CustomInput'
 import TodoItem from '../Components/TodoItem'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/navigation';
+
 
 type Props = NativeStackScreenProps<RootStackParamList, 'TodoTask'>;
 
@@ -12,6 +13,7 @@ const TodoTaskScreen = ({ navigation }: Props) => {
   const [todos, setTodos] = useState<{ checked: boolean, task: string }[]>([])
   const [editingIndex, setEditingIndex] = useState<number | null>(null)
   const [editText, setEditText] = useState('')
+  const [viewSideBar, setViewSideBar] = useState(false)
 
   const handleInputText = (text: string) => {
     setInput(text)
@@ -58,8 +60,13 @@ const TodoTaskScreen = ({ navigation }: Props) => {
 
   }
 
+  const handleViewSideBar = () => {
+    setViewSideBar(!viewSideBar)
+  }
+
 
   return (
+
     <View style={styles.container}>
       {/* header */}
       <View style={styles.background}>
@@ -67,15 +74,34 @@ const TodoTaskScreen = ({ navigation }: Props) => {
           <Image source={require('../../assets/backIcon.png')} style={styles.backIcon} />
         </TouchableOpacity>
         <Text style={styles.font}>Todo List</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleViewSideBar}>
           <Image source={require('../../assets/menu.png')} style={styles.backIcon} />
         </TouchableOpacity>
       </View>
 
+      {/* sidebar */}
+
+
+      {
+        viewSideBar &&
+        <>
+          <View style={styles.sideBar}>
+            <View style={styles.displayFlex}>
+              <Image source={require('../../assets/completedIcon.png')} style={styles.iconImage} />
+              <TouchableOpacity onPress={() => navigation.navigate('CompletedTask', { todos: todos })}><Text style={styles.sideBarFont}>Completed Task</Text></TouchableOpacity>
+            </View>
+            <View style={styles.displayFlex}>
+              <Image source={require('../../assets/pendingIcon.png')} style={styles.iconImage} />
+              <TouchableOpacity onPress={() => navigation.navigate('RemainingTask', { todos: todos })}><Text style={styles.sideBarFont}>Remaining Task</Text></TouchableOpacity>
+            </View>
+          </View>
+
+        </>
+      }
 
 
       {/* input and add task */}
-      <View style={{flex:1,backgroundColor:"#141414"}}>
+      <View style={{ flex: 1, backgroundColor: "#141414" }}>
         <View style={styles.flexWrapper}>
           <CustomInput placeholder='enter the task' icon={require('../../assets/taskicon.png')} onChangeText={handleInputText} value={input} color="white" />
           <TouchableOpacity onPress={handleAddTask}>
@@ -118,12 +144,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "serif",
     fontWeight: "bold",
-    color: "white",
+    // color: "white",
   },
   image: {
-    width: 25,
-    height: 25,
-    marginTop: 18,
+    width: 30,
+    height: 30,
+    marginTop: 5,
     marginRight: 10,
 
   },
@@ -132,7 +158,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: 30,
     paddingVertical: 10,
   },
   flatListStyle: {
@@ -142,7 +168,34 @@ const styles = StyleSheet.create({
   backIcon: {
     width: 15,
     height: 15,
+  },
+  sideBar: {
+    display: "flex",
+    // alignItems: "center",
+    paddingHorizontal: 35,
+    paddingVertical: 15,
+    backgroundColor: "#141414"
+
+
+  },
+  sideBarFont: {
+    fontFamily: "serif",
+    color: "white",
+    marginVertical: 10,
+  },
+
+  displayFlex: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+
+  },
+  iconImage: {
+    width: 15,
+    height: 15,
+    marginRight: 5,
   }
+
 })
 
 export default TodoTaskScreen
